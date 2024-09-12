@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h4>All Employee Page</h4>
+<div class="container card">
+    <h5 class="text-decoration-underline">List Of Employees</h5>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">No.</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Position</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% if allemployees  %}
+            {% for eachemployee in allemployees%}
+          <tr>
+            <th scope="row">{{eachemployee.id}}</th>
+            <td>{{ eachemployee.firstname}}</td>
+            <td>{{ eachemployee.lastname }}</td>
+            <td>{{ eachemployee.email}}</td>
+            <td>{{ eachemployee.phone}}</td>
+            <td>{{eachemployee.position}}</td>
+            <td><a  href="{% url 'updateemployee'  eachemployee.id %}" class="btn btn-same btn-outline-success">Update</a></td>
+            <td><a  href="{% url 'deleteemployee'  eachemployee.id %}" class="btn btn-same btn-outline-danger">Delete</a></td>
+          </tr>
+          {% endfor %}
+          {% endif %}
+        </tbody>
+      </table>
+</div>
+{% endblock content %}
